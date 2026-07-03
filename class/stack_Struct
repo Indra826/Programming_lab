@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 5
+int top=-1;
+struct student{
+int id;
+char name[20];
+float cg;
+
+};
+struct student stack[MAX];
+ void push()
+ {
+    if(top==MAX-1)
+    {printf("Stack Overflow!!");
+    return ;}
+    else
+    top++;
+    printf("Enter ID: ");
+    scanf("%d",&stack[top].id);
+    printf("Enter Name: ");
+    scanf("%s",&stack[top].name);
+   
+
+
+ }
+ void pop()
+ {
+  if(top==-1)
+  {
+   printf("Enter id: ");
+   scanf("stack Underflow\n");
+      return ;
+  }
+      printf("Deleted : %d %s\n",stack[top].id,stack[top].name);
+      top--;
+
+   }
+    
+   void display()
+   {
+     if(top==-1)
+     {printf("Stack is Empty\n");
+   return;
+   }
+   
+   
+   printf("\nStudents in Stack:\n");
+   for(int i=top;i>=0;i--)
+   {printf("%d %s\n",stack[i].id,stack[i].name);}
+}
+  int main()
+  {
+     push();
+     push();
+     display();
+     pop();
+     display();
+     return 0;
+
+
+  }
+
+
+
