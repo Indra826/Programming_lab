@@ -1,0 +1,620 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+#define MAX_USERS 100
+#define MAX_BUSES 10
+#define MAX_RESERVATIONS 100
+
+// ===== BUS STRUCTURE =====
+struct Bus{
+
+int busNumber;  
+char busName[50];  
+char source[50];  
+char destination[50];  
+char departureTime[20];  
+char arrivalTime[20];  
+int totalSeats;  
+int availableSeats;  
+float ticketPrice;
+
+};
+
+// ===== USER STRUCTURE =====
+struct User{
+
+char username[50];  
+char password[50];
+
+};
+
+// ===== RESERVATION STRUCTURE =====
+struct Reservation{
+
+int busNumber;  
+
+char seatNo[10];  
+char passengerName[50];  
+char source[50];  
+char destination[50];
+
+};
+
+// ===== MAIN MENU =====
+void displayMainMenu(){
+
+printf("\n========== BUS TICKET BOOKING SYSTEM ==========\n");  
+
+printf("1. Registration\n");  
+printf("2. Login\n");  
+printf("3. Exit\n");  
+
+printf("Enter Your Choice: ");
+
+}
+
+// ===== USER MENU =====
+void displayUserMenu(){
+
+printf("\n========== USER MENU ==========\n");  
+
+printf("1. View Available Buses\n");  
+printf("2. Book Ticket\n");  
+printf("3. Cancel Ticket\n");  
+printf("4. View Reservations\n");  
+printf("5. Logout\n");  
+
+printf("Enter Your Choice: ");
+
+}
+
+// ===== REGISTRATION =====
+void registerUser(struct User users[],
+int *totalUsers){
+
+if(*totalUsers >= MAX_USERS){  
+
+    printf("User Limit Reached!\n");  
+
+    return;  
+}  
+
+printf("\n===== USER REGISTRATION =====\n");  
+
+printf("Enter Username: ");  
+
+scanf("%49s",  
+      users[*totalUsers].username);  
+
+printf("Enter Password: ");  
+
+scanf("%49s",  
+      users[*totalUsers].password);  
+
+(*totalUsers)++;  
+
+printf("Registration Successful!\n");
+
+}
+
+// ===== LOGIN =====
+int login(struct User users[],
+int totalUsers){
+
+char username[50];  
+char password[50];  
+
+printf("\n===== USER LOGIN =====\n");  
+
+printf("Enter Username: ");  
+
+scanf("%49s", username);  
+
+printf("Enter Password: ");  
+
+scanf("%49s", password);  
+
+for(int i = 0; i < totalUsers; i++){  
+
+    if(strcmp(users[i].username,  
+              username) == 0 &&  
+
+       strcmp(users[i].password,  
+              password) == 0){  
+
+        printf("Login Successful!\n");  
+
+        return 1;  
+    }  
+}  
+
+printf("Invalid Username or Password!\n");  
+
+return 0;
+
+}
+
+// ===== VIEW BUSES =====
+void viewBuses(struct Bus buses[],
+int totalBuses){
+
+printf("\n========== AVAILABLE BUSES ==========\n");  
+
+for(int i = 0; i < totalBuses; i++){  
+
+    printf("\nBus Number    : %d\n",  
+           buses[i].busNumber);  
+
+    printf("Bus Name      : %s\n",  
+           buses[i].busName);  
+
+    printf("Route         : %s -> %s\n",  
+           buses[i].source,  
+           buses[i].destination);  
+
+    printf("Departure     : %s\n",  
+           buses[i].departureTime);  
+
+    printf("Arrival       : %s\n",  
+           buses[i].arrivalTime);  
+
+    printf("Total Seats   : %d\n",  
+           buses[i].totalSeats);  
+
+    printf("Available     : %d\n",  
+           buses[i].availableSeats);  
+
+    printf("Ticket Price  : %.2f\n",  
+           buses[i].ticketPrice);  
+
+    printf("--------------------------------------\n");  
+}
+
+}
+
+// ===== SHOW AVAILABLE SEATS =====
+void showAvailableSeats(struct Reservation r[],
+int reservationCount,
+int busNo){
+
+printf("\nAvailable Seats:\n");  
+
+for(char row = 'A'; row <= 'J'; row++){  
+
+    for(int num = 1; num <= 4; num++){  
+
+        char seat[10];  
+
+        sprintf(seat,  
+                "%c%d",  
+                row,  
+                num);  
+
+        int booked = 0;  
+
+        for(int i = 0;  
+            i < reservationCount;  
+            i++){  
+
+            if(r[i].busNumber == busNo &&  
+
+               strcmp(r[i].seatNo,  
+                      seat) == 0){  
+
+                booked = 1;  
+
+                break;  
+            }  
+        }  
+
+        if(booked == 0){  
+
+            printf("%s ",  
+                   seat);  
+        }  
+    }  
+
+    printf("\n");  
+}
+
+}
+
+// ===== BOOK TICKET =====
+void bookTicket(struct Bus buses[],
+int totalBuses,
+struct Reservation r[],
+int *reservationCount){
+
+int busNo;  
+int seats;  
+
+if(*reservationCount >= MAX_RESERVATIONS){  
+
+    printf("Reservation Limit Reached!\n");  
+
+    return;  
+}  
+
+printf("\nEnter Bus Number: ");  
+
+scanf("%d",  
+      &busNo);  
+
+for(int i = 0; i < totalBuses; i++){  
+
+    if(buses[i].busNumber == busNo){  
+
+        printf("\n===== BUS DETAILS =====\n");  
+
+        printf("Bus Name      : %s\n",  
+               buses[i].busName);  
+
+        printf("Route         : %s -> %s\n",  
+               buses[i].source,  
+               buses[i].destination);  
+
+        printf("Available     : %d\n",  
+               buses[i].availableSeats);  
+
+        printf("Ticket Price  : %.2f\n",  
+               buses[i].ticketPrice);  
+
+        showAvailableSeats(r,  
+                           *reservationCount,  
+                           busNo);  
+
+        printf("\nEnter Seats to Book: ");  
+
+        scanf("%d",  
+              &seats);  
+
+        if(seats <= 0 ||  
+
+           seats > buses[i].availableSeats){  
+
+            printf("Invalid Seat Amount!\n");  
+
+            return;  
+        }  
+
+        for(int j = 0; j < seats; j++){  
+
+            printf("\nEnter Passenger Name: ");  
+
+            scanf(" %[^\n]",  
+                  r[*reservationCount].  
+                  passengerName);  
+
+            printf("Enter Seat Number: ");  
+
+            scanf("%9s",  
+                  r[*reservationCount].  
+                  seatNo);  
+
+            int seatExists = 0;  
+
+            // CHECK DUPLICATE SEAT  
+            for(int k = 0;  
+                k < *reservationCount;  
+                k++){  
+
+                if(r[k].busNumber == busNo &&  
+
+                   strcmp(r[k].seatNo,  
+                          r[*reservationCount].  
+                          seatNo) == 0){  
+
+                    seatExists = 1;  
+
+                    break;  
+                }  
+            }  
+
+            if(seatExists == 1){  
+
+                printf("Seat Already Booked!\n");  
+
+                j--;  
+
+                continue;  
+            }  
+
+            r[*reservationCount].  
+            busNumber = busNo;  
+
+            strcpy(r[*reservationCount].source,  
+                   buses[i].source);  
+
+            strcpy(r[*reservationCount].destination,  
+                   buses[i].destination);  
+
+            (*reservationCount)++;  
+        }  
+
+        buses[i].availableSeats -= seats;  
+
+        float totalFare =  
+            seats *  
+            buses[i].ticketPrice;  
+
+        printf("\n===== BOOKING SUCCESSFUL =====\n");  
+
+        printf("Seats Booked : %d\n",  
+               seats);  
+
+        printf("Total Fare   : %.2f\n",  
+               totalFare);  
+
+        return;  
+    }  
+}  
+
+printf("Bus Not Found!\n");
+
+}
+
+// ===== CANCEL TICKET =====
+void cancelTicket(struct Bus buses[],
+int totalBuses,
+struct Reservation r[],
+int *reservationCount){
+
+char seatNo[10];  
+int busNo;  
+
+printf("\nEnter Bus Number: ");  
+
+scanf("%d",  
+      &busNo);  
+
+printf("Enter Seat Number to Cancel: ");  
+
+scanf("%9s",  
+      seatNo);  
+
+for(int i = 0;  
+    i < *reservationCount;  
+    i++){  
+
+    if(r[i].busNumber == busNo &&  
+
+       strcmp(r[i].seatNo,  
+              seatNo) == 0){  
+
+        // RETURN SEAT  
+        for(int j = 0;  
+            j < totalBuses;  
+            j++){  
+
+            if(buses[j].busNumber ==  
+               busNo){  
+
+                buses[j].availableSeats++;  
+
+                break;  
+            }  
+        }  
+
+        // DELETE RESERVATION  
+        for(int j = i;  
+            j < *reservationCount - 1;  
+            j++){  
+
+            r[j] = r[j + 1];  
+        }  
+
+        (*reservationCount)--;  
+
+        printf("Ticket Cancelled Successfully!\n");  
+
+        return;  
+    }  
+}  
+
+printf("Reservation Not Found!\n");
+
+}
+
+// ===== VIEW RESERVATIONS =====
+void viewReservations(struct Reservation r[],
+int reservationCount){
+
+if(reservationCount == 0){  
+
+    printf("\nNo Reservations Found!\n");  
+
+    return;  
+}  
+
+printf("\n========== ALL RESERVATIONS ==========\n\n");  
+
+printf("%-10s %-20s %-15s %-15s\n",  
+       "Seat No",  
+       "Passenger Name",  
+       "Source",  
+       "Destination");  
+
+printf("---------------------------------------------------------------\n");  
+
+for(int i = 0;  
+    i < reservationCount;  
+    i++){  
+
+    printf("%-10s %-20s %-15s %-15s\n",  
+
+           r[i].seatNo,  
+
+           r[i].passengerName,  
+
+           r[i].source,  
+
+           r[i].destination);  
+}
+
+}
+
+// ===== MAIN FUNCTION =====
+int main(){
+
+// ===== USERS =====  
+struct User users[MAX_USERS];  
+
+int totalUsers = 0;  
+
+// ===== RESERVATIONS =====  
+struct Reservation r[MAX_RESERVATIONS];  
+
+int reservationCount = 0;  
+
+// ===== BUS DATA =====  
+struct Bus buses[MAX_BUSES] = {  
+
+    {101,  
+     "Green Line",  
+     "Dhaka",  
+     "Sylhet",  
+     "8:30 AM",  
+     "3:00 PM",  
+     40,  
+     40,  
+     800},  
+
+    {102,  
+     "Hanif",  
+     "Dhaka",  
+     "CoxsBazar",  
+     "7:00 AM",  
+     "5:00 PM",  
+     40,  
+     40,  
+     1200},  
+
+    {103,  
+     "Shyamoli",  
+     "Sylhet",  
+     "Dhaka",  
+     "9:00 AM",  
+     "2:30 PM",  
+     40,  
+     40,  
+     750},  
+
+    {104,  
+     "Sagorika",  
+     "Sylhet",  
+     "Mymensingh",  
+     "6:20 AM",  
+     "3:00 PM",  
+     40,  
+     40,  
+     600}  
+};  
+
+int totalBuses = 4;  
+
+int loggedIn = 0;  
+
+while(1){  
+
+    // ===== MAIN MENU =====  
+    if(loggedIn == 0){  
+
+        int choice;  
+
+        displayMainMenu();  
+
+        scanf("%d",  
+              &choice);  
+
+        switch(choice){  
+
+            case 1:  
+
+                registerUser(users,  
+                             &totalUsers);  
+
+                break;  
+
+            case 2:  
+
+                loggedIn =  
+                login(users,  
+                      totalUsers);  
+
+                break;  
+
+            case 3:  
+
+                printf("Program Ended.\n");  
+
+                return 0;  
+
+            default:  
+
+                printf("Invalid Choice!\n");  
+        }  
+    }  
+
+    // ===== USER PANEL =====  
+    else{  
+
+        int choice;  
+
+        displayUserMenu();  
+
+        scanf("%d",  
+              &choice);  
+
+        switch(choice){  
+
+            case 1:  
+
+                viewBuses(buses,  
+                          totalBuses);  
+
+                break;  
+
+            case 2:  
+
+                bookTicket(buses,  
+                           totalBuses,  
+                           r,  
+                           &reservationCount);  
+
+                break;  
+
+            case 3:  
+
+                cancelTicket(buses,  
+                             totalBuses,  
+                             r,  
+                             &reservationCount);  
+
+                break;  
+
+            case 4:  
+
+                viewReservations(r,  
+                                 reservationCount);  
+
+                break;  
+
+            case 5:  
+
+                loggedIn = 0;  
+
+                printf("Logged Out Successfully!\n");  
+
+                break;  
+
+            default:  
+
+                printf("Invalid Choice!\n");  
+        }  
+    }  
+}  
+
+return 0;
+
+}
