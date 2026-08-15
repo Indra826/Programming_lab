@@ -13,35 +13,32 @@ This repository is where I learn and practice **Data Structures and Algorithms**
 ```
 programming-lab/
 │
-├── Array/
-│   ├── array_operations.c
-│   └── README.md
+├── Array
+│  
 │
-├── LinkedList/
-│   ├── singly_linked_list.c
-│   └── README.md
+├── LinkedList
+│   
 │
-├── Stack/
-│   └── stack.c
+├── Stack
+│  
 │
-├── Queue/
-│   └── queue.c
+├── Queue
+│ 
 │
-├── Tree/
-│   ├── binary_tree.c
-│   └── bst.c
+├── Tree
+│   
+│  
 │
-├── Graph/
-│   ├── bfs.c
-│   └── dfs.c
+├── Graph
+│   
 │
-├── String/
-│   └── string_operations.c
+│
+├── String
+│   
 │
 └── README.md
 ```
 
-> 📝 Update this structure as you add or rename folders.
 
 ---
 
