@@ -48,11 +48,11 @@ programming-lab/
 |---|---|
 | 🔤 **Strings** | String manipulation, pattern matching, and related operations |
 | 📊 **Arrays** | Array-based problems, searching, and sorting techniques |
-| 🔗 **Linked List** | Singly, doubly, and circular linked list implementations |
-| 📚 **Stack** | Stack implementation and its applications |
-| 📥 **Queue** | Queue implementation and its applications |
-| 🌳 **Tree** | Binary trees, binary search trees, and tree traversal algorithms |
-| 🕸️ **Graph** | Graph representation, traversal (BFS/DFS), and related algorithms |
+| 🔗 **Linked List** | linked list implementations |
+| 📚 **Stack** | Stack implementation |
+| 📥 **Queue** | Queue implementation  |
+| 🌳 **Tree** | Tree implementation |
+| 🕸️ **Graph** | Graph representation |
 
 > More topics will be added as coursework progresses.
 
