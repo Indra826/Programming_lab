@@ -1,0 +1,16 @@
+
+#include<stdio.h>
+struct student{
+    int id;
+    float cgpa;
+    char name[20];
+};
+int main()
+{
+    struct student s1={41,3.71,"sadia"};
+    struct student *ptr=&s1;
+    printf("Students information::\n ");
+    printf("ID= %d\n",(*ptr).id);
+    printf("CGPA= %.2f\n",ptr->cgpa);
+    printf("NAME= %s\n",ptr->name);
+}
