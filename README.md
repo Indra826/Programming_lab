@@ -8,7 +8,7 @@ This repository is where I learn and practice **Data Structures and Algorithms**
 
 ---
 
-## 🗂️ Repository Structure
+##  Repository Structure
 
 ```
 programming-lab/
@@ -42,7 +42,7 @@ programming-lab/
 
 ---
 
-## 📂 Repository Contents
+##  Repository Contents
 
 | Topic | Description |
 |---|---|
@@ -58,13 +58,13 @@ programming-lab/
 
 ---
 
-## 🧑‍💻 Programming Languages
+## Programming Languages
 
 - C — used for all lab exercises and homework in this repository
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 - Build a strong foundation in core data structures and algorithms
 - Practice translating theoretical concepts into working C code
