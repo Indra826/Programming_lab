@@ -1,5 +1,5 @@
 
-A personal collection of lab exercises and homework assignments completed during coursework, documenting my journey of learning **Data Structures and Algorithms (DSA)** through hands-on programming.
+A personal collection of lab exercises and homework assignments completed during coursework, documenting my journey of learning **Data Structures and Algorithms (DSA)** through hands on programming.
 
 
  ## 📖 About
