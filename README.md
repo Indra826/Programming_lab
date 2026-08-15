@@ -22,18 +22,18 @@ programming-lab/
 ├── RECURSION
 │  
 │
-├── Queue
+├── STRING
 │ 
 │
-├── Tree
+├── STRUCTURE
 │   
 │  
 │
-├── Graph
+├── TREE
 │   
 │
 │
-├── String
+├── STACK
 │   
 │
 └── README.md
