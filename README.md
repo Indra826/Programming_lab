@@ -2,7 +2,7 @@
 A personal collection of lab exercises and homework assignments completed during coursework, documenting my journey of learning **Data Structures and Algorithms (DSA)** through hands-on programming.
 
 
- 📖 About
+ ## 📖 About
 
 This repository is where I learn and practice **Data Structures and Algorithms**. Every lab session and homework assignment from my coursework is organized here, topic by topic, as I build a solid foundation in problem-solving and programming logic.
 
