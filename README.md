@@ -46,13 +46,13 @@ programming-lab/
 
 | Topic | Description |
 |---|---|
-| 🔤 **Strings** | String manipulation, pattern matching, and related operations |
-| 📊 **Arrays** | Array-based problems, searching, and sorting techniques |
-| 🔗 **Linked List** | linked list implementations |
-| 📚 **Stack** | Stack implementation |
-| 📥 **Queue** | Queue implementation  |
-| 🌳 **Tree** | Tree implementation |
-| 🕸️ **Graph** | Graph representation |
+|  **Strings** | String manipulation, pattern matching, and related operations |
+|  **Arrays** | Array-based problems, searching, and sorting techniques |
+|  **Linked List** | linked list implementations |
+|  **Stack** | Stack implementation |
+|  **Queue** | Queue implementation  |
+|  **Tree** | Tree implementation |
+|  **Graph** | Graph representation |
 
 > More topics will be added as coursework progresses.
 
