@@ -13,13 +13,13 @@ This repository is where I learn and practice **Data Structures and Algorithms**
 ```
 programming-lab/
 │
-├── Array
+├── ARRAY
 │  
 │
-├── LinkedList
+├── GRAPH
 │   
 │
-├── Stack
+├── RECURSION
 │  
 │
 ├── Queue
